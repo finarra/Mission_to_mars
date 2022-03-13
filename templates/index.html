@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Mission to Mars</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Add Jumbotron to Header -->
+      <div class="jumbotron text-center">
+        <h1>Mission to Mars <small> Welcome! Have a look around!</small></h1>
+        <!-- Add a button to activate scraping script -->
+        <p><button type="button" class="btn btn-success">Scrape new data!</button></p>
+      </div>
+      <!-- Add section for Mars News -->
+      <div class="row" id="mars-news">
+        <div class="col-md-12">
+          <div class="media">
+            <div class="media-body">
+              <h2>Latest Mars News</h2>
+              <h4 class="media-heading">{{ mars.news_title }}</h4>
+              <p>{{ mars.news_paragraph }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Section for Featured Image and Facts table -->
+      <div class="row" id="mars-featured-image">
+        <div class=".col-xs-12 .col-sm-6 .col-lg-8">
+          <h2>Featured Mars Image</h2>
+         <img src="https://spaceimages-mars.com/image/featured/mars2.jpg" class="img-responsive" alt="Responsive image">
+        </div>
+        <div class=".col-xs-6 .col-lg-4">
+          <!-- Mars Facts -->
+          <table class="table table-striped" id="mars-facts">
+            <h2>Mars Facts</h2>
+            {{ mars.facts | safe }}
+          </table>
+        </div>
+      </div>
+      <div class="row" id="mars-hemispheres">
+        <div class=".col-xs-12 .col-sm-6 .col-lg-8">
+          <h2>Mars Hemispheres (full resolution)</h2>
+          <ul style="list-style: none;">
+          {% for hemisphere in mars.hemispheres %}
+            <h4>{{hemisphere.title}}</h4>
+            <img src={{hemisphere.img_url}} class="img-responsive"  alt="Responsive image">
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
